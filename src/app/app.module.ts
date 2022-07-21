@@ -25,7 +25,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {HttpClientModule} from '@angular/common/http';
 import {CourseDialogComponent} from './course-dialog/course-dialog.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {LoginComponent} from './login/login.component';
 import {LessonComponent} from './lesson/lesson.component';
@@ -33,6 +33,7 @@ import {SafeUrlPipe} from './common/safe-url.pipe';
 import {MessagesComponent} from './messages/messages.component';
 import {SearchLessonsComponent} from './search-lessons/search-lessons.component';
 import { LoadingComponent } from './loading/loading.component';
+import {CoursesService} from './services/courses.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { LoadingComponent } from './loading/loading.component';
     ReactiveFormsModule
   ],
   providers: [
+    CoursesService
   ],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponent]
