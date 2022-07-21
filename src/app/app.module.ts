@@ -34,6 +34,7 @@ import {MessagesComponent} from './messages/messages.component';
 import {SearchLessonsComponent} from './search-lessons/search-lessons.component';
 import { LoadingComponent } from './loading/loading.component';
 import {CoursesService} from './services/courses.service';
+import { CoursesCardListComponent } from './courses-card-list/courses-card-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {CoursesService} from './services/courses.service';
     SafeUrlPipe,
     MessagesComponent,
     SearchLessonsComponent,
-    LoadingComponent
+    LoadingComponent,
+    CoursesCardListComponent
 
   ],
   imports: [
