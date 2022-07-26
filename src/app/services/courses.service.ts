@@ -6,7 +6,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {Course} from '../model/course';
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 
 // Stateless observable based service
@@ -17,9 +17,16 @@ export class CoursesService {
   }
 
   loadAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>("/api/courses")
+    return this.http.get<Course[]>('/api/courses')
       .pipe(
-        map(res => res["payload"]),
+        map(res => res['payload']),
+        shareReplay()
+      );
+  }
+
+  saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
+    return this.http.put(`/api/courses/${courseId}`, changes)
+      .pipe(
         shareReplay()
       );
   }
