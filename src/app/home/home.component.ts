@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
 import {CoursesService} from '../services/courses.service';
+import {LoadingService} from '../loading/loading.service';
 
 @Component({
   selector: 'home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
   advancedCourses$: Observable<Course[]>;
 
   constructor(
-    private coursesService: CoursesService) {
+    private coursesService: CoursesService,
+    private loadingService: LoadingService) {
 
   }
 
@@ -31,10 +33,12 @@ export class HomeComponent implements OnInit {
       map(courses => courses.sort(sortCoursesBySeqNo))
     );
 
-    this.beginnerCourses$ = courses$.pipe(
+    const loadCourses$ = this.loadingService.showLoaderUntilComplete(courses$);
+
+    this.beginnerCourses$ = loadCourses$.pipe(
       map(courses => courses.filter(course => course.category == "BEGINNER"))
     );
-    this.advancedCourses$ = courses$.pipe(
+    this.advancedCourses$ = loadCourses$.pipe(
       map(courses => courses.filter(course => course.category == "ADVANCED"))
     );
   }
