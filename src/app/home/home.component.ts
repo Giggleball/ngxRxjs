@@ -37,7 +37,10 @@ export class HomeComponent implements OnInit {
             const message = 'could not load courses';
             this.messagesService.showErrors(message);
             console.log(message, err);
-            return throwError(err);
+          /** return a new observable which will replace the observable that has errored out
+           * throw error creates a new observable that immediately emits the error and end the lifecycle
+           */
+          return throwError(err);
           }
         )
       )
